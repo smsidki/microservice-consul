@@ -14,7 +14,7 @@ import com.greenfoarfece.ms.rating.service.RatingService;
 public class RatingController {
 	
 	@Autowired
-	RatingService ratingService;
+	private RatingService ratingService;
 	
 	@GetMapping("/{isbn}")
 	public Rating getRatingByBookIsbn(@PathVariable String isbn) {
