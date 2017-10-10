@@ -6,7 +6,8 @@ import lombok.Data;
 public class Rating {
 	
 	private Long id;
-	private Long bookId;
+	private String isbn;
+	private String bookTitle;
 	private int stars;
 
 }
