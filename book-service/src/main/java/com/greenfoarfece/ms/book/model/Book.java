@@ -1,13 +1,13 @@
 package com.greenfoarfece.ms.book.model;
 
-import java.time.Year;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,11 +17,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "book")
+@Table(name = "tb_book")
 public class Book {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(generator = "book_seq_gen")
+	@GenericGenerator(
+		name = "book_seq_gen",
+		strategy = "sequence",
+		parameters = {@Parameter(name = "sequence", value = "book_id_seq")}
+	)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -31,7 +36,7 @@ public class Book {
 	private String author;
 	
 	@Column(nullable = false)
-	private Year year;
+	private Integer year;
 	
 	@Column(unique = true, nullable = false)
 	private String isbn;

@@ -16,14 +16,17 @@ public class PortProviderSetting implements EmbeddedServletContainerCustomizer {
 
 	@Override
 	public void customize(ConfigurableEmbeddedServletContainer container) {
-		container.setPort(getAvailablePort());
+		container.setPort(getAvailablePort().intValue());
 	}
 	
-	private int getAvailablePort() {
+	private Integer getAvailablePort() {
+		Integer port = null;
 		if(portRange.size() == 1){
-			return portRange.get(0);
+			port = portRange.get(0);
+		} else {
+			port = SocketUtils.findAvailableTcpPort(portRange.get(0), portRange.get(1));
 		}
-		return SocketUtils.findAvailableTcpPort(portRange.get(0), portRange.get(1));
+		return port;
 	}
 
 }

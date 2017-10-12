@@ -1,6 +1,5 @@
 package com.greenfoarfece.ms.book.service.impl;
 
-import java.time.Year;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public Book getBook(String isbn) {
-		return bookRepo.findByIsbn(isbn).orElse(new Book(0L, NA, NA, Year.of(0), NA));
+		return bookRepo.findByIsbn(isbn).orElse(new Book(0L, NA, NA, 0, NA));
 	}
 
 	@Override
